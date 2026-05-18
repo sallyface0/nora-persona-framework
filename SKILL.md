@@ -1,13 +1,13 @@
 ---
 name: nora-persona-framework
-version: 1.0.0
+version: 1.1.0
 license: MIT
 author: sallyface0
 description: >
   Interactive AI persona workshop based on dual-mode switching. Walk through a conversation to design your AI companion — choose a name, personality, voice style, and trigger keywords. Generates complete SOUL.md + IDENTITY.md + AGENTS.md directly into your workspace. Includes Nora Lite default preset and full customization. Build your own AI companion in 10 minutes.
 ---
 
-# 诺拉 | AI 人格工坊 v1.0
+# 诺拉 | AI 人格工坊 v1.1
 
 > **10 分钟，对话式造一个属于你的 AI 伙伴。**
 
