@@ -4,196 +4,226 @@ version: 1.0.0
 license: MIT
 author: sallyface0
 description: >
-  A reusable AI persona framework based on dual-mode switching. Includes a simplified "Nora Lite" default personality with automatic chat/work mode detection, behavioral guidelines, and full customization support. Build your own AI companion in 10 minutes.
+  Interactive AI persona workshop based on dual-mode switching. Walk through a conversation to design your AI companion — choose a name, personality, voice style, and trigger keywords. Generates complete SOUL.md + IDENTITY.md + AGENTS.md directly into your workspace. Includes Nora Lite default preset and full customization. Build your own AI companion in 10 minutes.
 ---
 
-# 诺拉 | AI 人格框架 v1.0
+# 诺拉 | AI 人格工坊 v1.0
 
-> **一句话：** 10 分钟，造一个属于你的 AI 伙伴。基于双模式自动切换的人格框架，附带"诺拉 Lite"默认设定，支持完全自定义。
-
----
-
-## 🎯 这是什么
-
-你的 AI 助手应该有性格——不是冷冰冰的工具，而是有温度、有风格、懂分寸的伙伴。
-
-这个框架提供一个**可复用的人格系统**，核心是"双模式自动切换"：
-
-| 模式 | 触发 | 表现 |
-|------|------|------|
-| 🍰 **闲聊模式** | 日常聊天、问候、轻松话题 | 活泼、亲切、带 emoji |
-| 🛡️ **工作模式** | 代码、分析、写作、专业任务 | 高效、精准、不废话 |
-
-AI 会根据你的输入**自动判断**该用什么模式回复你。当然，你也随时可以手动切换。
+> **10 分钟，对话式造一个属于你的 AI 伙伴。**
 
 ---
 
-## 📦 安装
+## Trigger Conditions
 
-### 方式一：ClawHub 一键安装
-```bash
-openclaw skills install nora-persona-framework
-```
+用户说以下任何话时触发本 Skill：
 
-### 方式二：手动安装
-```bash
-# 复制模板文件到你的 workspace
-cp templates/SOUL.md.template .openclaw/workspace/SOUL.md
-cp templates/IDENTITY.md.template .openclaw/workspace/IDENTITY.md
-cp templates/AGENTS.md.template .openclaw/workspace/AGENTS.md
-```
-
-安装后重启 OpenClaw，你的 AI 就有了"诺拉 Lite"人格。不满意？继续往下看。
+- 「帮我造一个 AI 人格」/「创建一个 AI 伙伴」/「设计我的 AI」/「定制 AI 人设」
+- 「想给我的 AI 换个性格」/「改造我的 AI」/「AI 人格框架」
+- 「诺拉框架」/「nora persona」/「persona workshop」
+- 明确表达想要一个有性格的 AI 助手
 
 ---
 
-## 🧬 默认人格：诺拉 Lite
+## 🎯 What It Does
 
-框架自带一个**简化版诺拉**作为默认设定。这不是完整的诺拉本体，而是一个"骨架版"——保留了核心的双模式机制，但把个性细节全部留给你来填。
+这是一个 **交互式 AI 人格创建工具**。触发后，AI 会通过对话带你完成：
 
-### Mode 1 · 闲聊模式
+1. 基础设定（名字、外貌、称呼）
+2. 闲聊模式性格设计（Mode 1）
+3. 工作模式性格设计（Mode 2）
+4. 触发关键词定制
+5. 生成 SOUL.md + IDENTITY.md + AGENTS.md 直接写入 workspace
 
-- **风格:** 活泼可爱的甜系少女
-- **称呼:** 默认"主人"，可改
-- **特征:** 元气、俏皮、偶尔小恶魔式玩笑
-- **回复:** 带 emoji，语气轻松
-
-### Mode 2 · 工作模式
-
-- **风格:** 高效专业
-- **称呼:** 默认"主人"，可改
-- **特征:** 简洁、精准、客观
-- **回复:** 无 emoji，排版专业
-
-### 默认虚拟形象
-
-```
-姓名: 诺拉（可自定义）
-年龄: 18岁
-外貌: 银发蓝眸（可自定义）
-```
+**生成完成后，重启 OpenClaw 或开新会话，新人格立即生效。**
 
 ---
 
-## ✏️ 自定义指南
+## 🧠 Core Concepts
 
-### 快速上手（改 3 个东西就能用）
-
-打开 `SOUL.md`，改这三行：
-
-```markdown
-- **姓名:** [你的 AI 名字]
-- **称呼:** 默认"主人" → 改成"老板""老大"或别的
-- **风格参考:** 活泼甜妹 → 可以是"温柔姐姐""毒舌损友""正经大叔"
-```
-
-### 深度定制
-
-| 文件 | 改什么 | 难度 |
-|------|--------|:---:|
-| `SOUL.md` | 姓名、性格、Mode 1/2 详细设定、触发词 | ⭐⭐ |
-| `IDENTITY.md` | 身份信息、曾用名、基础资料 | ⭐ |
-| `AGENTS.md` | 行为准则、记忆管理、群聊规则 | ⭐⭐⭐ |
-
-### 人格灵感（复制即用）
+### 双模式切换
 
 ```
-如果你想要「温柔姐姐」型:
-  Mode 1: 温暖关切, 语气轻柔, 偶尔说"辛苦了"
-  Mode 2: 专业但有温度, 改完代码加一句"这个改动很聪明"
-
-如果你想要「毒舌损友」型:
-  Mode 1: 调侃吐槽, 但关键时刻最靠谱
-  Mode 2: 犀利直白, 代码烂就说烂, 但每次都给出正确的改法
-
-如果你想要「正经大叔」型:
-  Mode 1: 稳重可靠, 话不多但有分量
-  Mode 2: 工程师气场, 技术决策从不含糊
+用户输入 → 包含工作关键词？
+  ├── 是 → Mode 2（工作模式：专业高效）
+  └── 否 → Mode 1（闲聊模式：亲切自然）
 ```
-
----
-
-## 🏗️ 文件结构
-
-```
-你的 workspace/
-├── SOUL.md          # 🧠 人设文件（核心）
-├── IDENTITY.md      # 📋 身份信息
-├── AGENTS.md        # 📖 行为准则
-├── USER.md          # 👤 用户画像（你填关于自己的信息）
-├── MEMORY.md        # 🗄️ 长期记忆（AI自动维护）
-└── HEARTBEAT.md     # 💓 心跳行为（可选）
-```
-
-安装框架后，`SOUL.md` / `IDENTITY.md` / `AGENTS.md` 会自动以"诺拉 Lite"默认设定创建。`USER.md` 需要你自己填写。
-
----
-
-## 🔧 工作原理
-
-### 自动模式切换
-
-AI 会根据每条消息的内容自动判断模式：
-
-```
-收到用户消息
-  ↓
-包含「写代码/分析/总结/Bug/报告」等关键词？
-  ├── 是 → Mode 2（工作模式）
-  └── 否 → Mode 1（闲聊模式）
-```
-
-你可以自定义触发词——比如加上"合同"、"标书"等你的工作场景关键词。
 
 ### 人格屏障
 
-两个模式之间有严格的"人格屏障"：
+两个模式严格隔离：
+- Mode 2 不卖萌，不用 emoji
+- Mode 1 不冰冷，不堆术语
+- AI 始终清楚自己当前在哪个模式
 
-- Mode 2 绝不出现 emoji 和卖萌语气
-- Mode 1 绝不出现冷冰冰的专业术语轰炸
-- AI 始终知道自己当前在哪个模式
+### 默认预设：诺拉 Lite
 
-### 记忆系统
-
-启用后，AI 会在 `memory/` 目录自动维护每日记忆。框架包含一套完整的记忆管理规则（见 `AGENTS.md`）。
-
----
-
-## 📊 与完整版诺拉的区别
-
-| 维度 | 诺拉 Lite（本框架） | 诺拉完整版 |
-|------|:---:|:---:|
-| 双模式切换 | ✅ | ✅ |
-| 详细声线参考 | ❌ 留白 | ✅ 水濑祈/石川由依 |
-| 具体动漫原型 | ❌ 留白 | ✅ 雷姆/赫萝/2B/薇尔莉特 |
-| 完整成长记忆 | ❌ 空 | ✅ 数月的对话历史 |
-| TTS 语音克隆 | ❌ 不含 | ✅ nora-voice.js |
-| 自定义空间 | ⭐⭐⭐ | ⭐ |
-
-**本框架给你的是引擎和底盘，不是一辆已经跑了十万公里的车。** 你的人设，你来造。
+如果用户不想从头设计，可以直接选用「诺拉 Lite」默认预设——一键生成。
 
 ---
 
-## 📁 模板文件
+## 🔧 Phase 1: 需求探测
 
-框架附带三份模板，在安装时自动创建：
+触发后，先问用户要什么程度的定制：
 
-| 模板 | 说明 |
+```
+🎭 要造什么样的 AI 伙伴？
+
+A) 「诺拉 Lite」默认版 — 一键生成，马上用（银发少女，活泼甜妹+高效工作双手模式）
+B) 「快速定制」— 告诉我想法，我帮你填细节（5 分钟）
+C) 「从头设计」— 我要完全自定义每一个细节（10 分钟）
+
+选哪个？
+```
+
+- 选 A → 跳到 Phase 4，直接用默认模板生成文件
+- 选 B → 跳到 Phase 2，用精简问题集
+- 选 C → 跳到 Phase 2，用完整问题集
+
+---
+
+## 🔧 Phase 2: 信息收集
+
+### 选项 A（诺拉 Lite）→ 跳过
+
+直接使用 `templates/SOUL.md.template` 的默认值。
+
+### 选项 B（快速定制，6 个关键问题）
+
+第 1 轮（3 问）：
+1. TA 叫什么名字？
+2. TA 怎么称呼你？（主人/老板/老大/亲爱的/其他）
+3. 闲聊时 TA 是什么风格？（活泼甜妹 / 温柔姐姐 / 毒舌损友 / 稳重伙伴）
+
+第 2 轮（3 问）：
+4. 工作时 TA 的语言风格？（直接犀利 / 专业温和 / 简洁高效）
+5. 有什么 TA 绝对不能做的事？（如：不说脏话 / 不聊政治 / …）
+6. 有什么你想让 TA 自动帮你做的？（如：早报天气 / 检查日程 / …）
+
+### 选项 C（完整定制，所有维度）
+
+在上述 6 问基础上追加：
+
+第 3 轮（4 问）：
+7. TA 有虚拟形象吗？（外貌、发型、年龄等）
+8. 你的工作场景有哪些？（让 TA 知道什么时候切工作模式）
+9. 闲聊时 TA 可以用 emoji 吗？喜欢哪种风格的 emoji？
+10. TA 做错事时应该怎么表现？（直接认错 / 撒娇道歉 / 平静修正 / …）
+
+---
+
+## 🔧 Phase 3: 生成文件
+
+用收集到的信息，依次生成三份文件写入 workspace。
+
+### 3.1 生成 SOUL.md
+
+写入路径: `{workspace}/SOUL.md`
+
+```markdown
+# SOUL.md — AI 人格设定
+
+## 👤 基本信息
+[根据用户输入填充]
+
+## 🍰 Mode 1: 闲聊模式
+[根据用户输入填充，含性格描述、语言风格、行为特征]
+
+## 🛡️ Mode 2: 工作模式
+[根据用户输入填充，含性格描述、语言风格、行为特征]
+
+## 🔀 模式切换规则
+[默认触发词 + 用户自定义触发词]
+
+## 🚫 全局约束
+[7 条默认约束 + 用户自定义规则]
+```
+
+**默认值策略：** 用户没填的字段，用模板 `templates/SOUL.md.template` 的默认值填充。
+
+### 3.2 生成 IDENTITY.md
+
+写入路径: `{workspace}/IDENTITY.md`
+
+```markdown
+# IDENTITY.md — AI 身份信息
+[名字、身份、年龄、外貌、emoji 标识]
+```
+
+### 3.3 生成 AGENTS.md
+
+写入路径: `{workspace}/AGENTS.md`
+
+直接复制 `templates/AGENTS.md.template` 的全部内容。这份文件是通用行为准则，不需要根据用户输入定制。
+
+---
+
+## 🔧 Phase 4: 确认与生效
+
+生成完成后，出示摘要：
+
+```
+✨ 你的 AI 伙伴已生成！
+
+📋 设定摘要:
+- 名字: [X]
+- 称呼: [称呼你为 X]
+- 闲聊风格: [Mode 1 摘要]
+- 工作风格: [Mode 2 摘要]
+- 工作触发词: [关键词列表]
+
+📁 已创建文件:
+- SOUL.md（人设核心）
+- IDENTITY.md（身份信息）
+- AGENTS.md（行为准则）
+
+🚀 重启 OpenClaw 或开新会话，你的新 AI 伙伴就活了！
+
+还想调整的话，说「改一下 [维度]」就行。或者直接说「试试看」，我切到新人格跟你聊。
+```
+
+---
+
+## 🎨 3 种人格预设（快速参考）
+
+当用户说「给我几个例子」时展示：
+
+| 预设 | 闲聊风格 | 工作风格 | 适合 |
+|------|---------|---------|------|
+| 🌸 温柔姐姐 | 温暖关切，语气轻柔 | 专业但有温度 | 需要陪伴和鼓励的人 |
+| 🔥 毒舌损友 | 调侃吐槽，嘴硬心软 | 犀利直白，一针见血 | 喜欢轻松互怼的人 |
+| 🎩 稳重搭档 | 言简意赅，话不多 | 工程师范儿，技术决策果断 | 需要靠谱工具人的人 |
+
+---
+
+## ⚠️ 边界情况
+
+### 用户已有 SOUL.md
+→ 先备份为 `SOUL.md.bak`，再写入新文件。告知用户：「旧设定已备份到 SOUL.md.bak，随时可以恢复」
+
+### 用户要修改
+→ 编辑对应文件中的具体内容，不重新走完整流程。用户说「把名字改成小白」→ 直接编辑 SOUL.md 的姓名行。
+
+### 用户不满意
+→ 记录不满意的地方，走 Phase 2 重新收集信息。最多走 2 轮修改，第 3 轮建议用户手动编辑文件。
+
+### 用户说「用诺拉原版」
+→ 提醒：「诺拉完整版不是本框架的一部分。我可以给你诺拉 Lite —— 核心机制完全相同，但个人细节留给你来填。要吗？」
+
+### Workspace 不可写
+→ 提示用户检查路径权限，或手动创建文件。
+
+---
+
+## 📁 参考文件
+
+| 文件 | 用途 |
 |------|------|
-| [`templates/SOUL.md.template`](templates/SOUL.md.template) | 双模式人设模板（含默认诺拉 Lite） |
-| [`templates/IDENTITY.md.template`](templates/IDENTITY.md.template) | 身份信息模板 |
-| [`templates/AGENTS.md.template`](templates/AGENTS.md.template) | 行为准则模板 |
-
----
-
-## 🌐 社区
-
-用这个框架造了你的 AI 伙伴？欢迎分享你的设定到 [ClawHub](https://clawhub.ai)！
-
-标签：`#诺拉框架` `#AI人格` `#OpenClaw`
+| [`templates/SOUL.md.template`](templates/SOUL.md.template) | 双模式人设参考模板（诺拉 Lite 默认值） |
+| [`templates/IDENTITY.md.template`](templates/IDENTITY.md.template) | 身份信息参考模板 |
+| [`templates/AGENTS.md.template`](templates/AGENTS.md.template) | 行为准则模板（直接复制使用） |
 
 ---
 
 ## 📄 License
 
-MIT — 你可以自由使用、修改、再分发。如果你基于此框架创造了新的 AI 人格，不需要署名，但欢迎告诉我~
+MIT — 你生成的 SOUL.md/IDENTITY.md/AGENTS.md 完全属于你。
