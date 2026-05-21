@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v1.4.0 (2026-05-21)
+
+### 🛡️ Personality Consistency Watchdog
+- **5-D drift detection**: mode switching accuracy / tone consistency / address compliance / global constraint adherence / behavior matching
+- **3 trigger modes**: manual (user says "check") / proactive weekly suggestion / anomaly auto-trigger (3 consecutive persona complaints)
+- **Deviation scoring**: 0-50 total (5 dimensions × 10pts), 4-tier severity classification
+- **Structured report**: table-based output with scores, status indicators, and fix suggestions
+- **Non-destructive**: watchdog only reports—never auto-modifies SOUL.md without user confirmation
+- **Persona archive**: check results stored in `memory/persona-check-YYYY-MM-DD.md` for long-term tracking
+
+### 🔧 Minor Updates
+- Trigger conditions expanded to include consistency check keywords
+- SKILL.md restructured with new watchdog section
+
 ## v1.3.0 (2026-05-18)
 
 ### 🎭 6 New Presets (11 Total)

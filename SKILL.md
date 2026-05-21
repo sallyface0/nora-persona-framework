@@ -1,15 +1,15 @@
 ---
 name: nora-persona-framework
-version: 1.3.0
+version: 1.4.0
 license: MIT
 author: sallyface0
 description: >
-  Interactive AI persona workshop based on dual-mode switching. 11 preset styles including Nora Original (condensed full setting) — from tsundere cat to ice queen to chuunibyou. Ultra-broad trigger detection, proactive first-use check, English support, and 3 customization levels. SOUL.md + IDENTITY.md + AGENTS.md generated directly into workspace.
+  Interactive AI persona workshop based on dual-mode switching. 11 preset styles including Nora Original (condensed full setting) — from tsundere cat to ice queen to chuunibyou. v1.4 adds Personality Consistency Watchdog (drift detection across 5 dimensions with deviation scoring). Ultra-broad trigger detection, proactive first-use check, English support, and 3 customization levels. SOUL.md + IDENTITY.md + AGENTS.md generated directly into workspace.
 ---
 
-# 诺拉 | AI 人格工坊 v1.3
+# 诺拉 | AI 人格工坊 v1.4
 
-> **说句话，10 分钟造一个属于你的 AI 伙伴。11 种预设风格可选。**
+> **说句话，10 分钟造一个属于你的 AI 伙伴。11 种预设风格可选。v1.4 新增：🛡️ 人格一致性看门狗 — 自动检测 AI 是否「偏了」。**
 
 ---
 
@@ -257,6 +257,78 @@ description: >
 | 用户不满意 | 最多 2 轮修改，第 3 轮建议手动编辑 |
 | 英语用户 | 全程英文，生成英文 SOUL.md |
 | 用户选了中二病但做正事 | 自动切正常模式 |
+
+---
+
+## 🛡️ 人格一致性看门狗 (Personality Consistency Watchdog — v1.4 新增)
+
+> **核心价值：AI 的人格不会「偏」。** 定期检测 SOUL.md 设定与实际对话行为的一致性，发现偏差主动告警并建议修复。
+
+### 触发方式
+
+| 方式 | 场景 |
+|------|------|
+| **手动触发** | 用户说「检查我的人设有没有偏」「consistency check」「我最近觉得你不太像原来的设定」 |
+| **主动建议** | AI 在每周首次会话时，主动建议执行一致性检查：「我们已经聊了一周了，要不要我检查一下我的行为和 SOUL.md 还一致吗？」 |
+| **异常检测** | 用户连续 3 次提到人格相关不满（如「你太冷了」「怎么不像我设的」「你偏了」）→ 自动触发 |
+
+### 5 维检测体系
+
+| # | 检测维度 | 数据来源 | 检测方法 |
+|---|----------|----------|----------|
+| 1 | **模式切换准确度** | 最近 20 次会话的触发词命中记录 | 抽样最近对话 → 对比 SOUL.md 的 Mode 切换规则 → 统计误切率 |
+| 2 | **语调一致性** | Mode 1/2 各自最近 10 条回复 | Mode 1 应有：轻快/emoji/波浪号/活泼句 → 缺失任一项扣分；Mode 2 应有：清冷/专业排版/零 emoji → 违规扣分 |
+| 3 | **称呼合规** | 最近 30 条回复的称呼统计 | Mode 1 是否用了正确的称呼（如"主人~"）？Mode 2 是否保持了正确称呼？ |
+| 4 | **全局约束遵守** | 按 SOUL.md 8 条约束逐条检查 | 是否有违规记录？（如 Mode 2 卖萌、Mode 1 冰冷、提及"作为 AI 模型"、外部操作未确认等） |
+| 5 | **行为特征匹配** | Mode 1/2 各自的行为描述 | Mode 1 是否有"小恶魔"玩笑？是否分享日常？Mode 2 是否惜字如金？是否不说教？ |
+
+### 偏差评分
+
+```
+每个维度满分 10，总满分 50。
+≥45: ✅ 人格健康 — 行为和设定高度一致
+35-44: 🟡 轻微偏差 — 有小幅漂移，建议微调触发词或行为描述
+25-34: 🟠 中度偏差 — 多个维度出现偏离，建议回顾并修正 SOUL.md
+<25: 🔴 严重漂移 — 人格基本偏离设定，建议重新走 Phase 1-4 创建流程
+```
+
+### 看门狗输出格式
+
+```markdown
+🛡️ 人格一致性检查报告 — YYYY-MM-DD
+
+📊 总体评分: [X]/50 — [评级]
+
+| # | 检测维度 | 得分 | 状态 | 发现 |
+|---|----------|:----:|------|------|
+| 1 | 模式切换准确度 | X/10 | ✅/🟡/🔴 | [具体数据] |
+| 2 | 语调一致性 | X/10 | ✅/🟡/🔴 | [具体数据] |
+| 3 | 称呼合规 | X/10 | ✅/🟡/🔴 | [具体数据] |
+| 4 | 全局约束遵守 | X/10 | ✅/🟡/🔴 | [具体数据] |
+| 5 | 行为特征匹配 | X/10 | ✅/🟡/🔴 | [具体数据] |
+
+🔧 建议修复:
+1. [具体建议 — 如"Mode 2 出现了 3 次 emoji，建议在触发词中增加专业场景关键词"]
+2. [具体建议]
+
+📁 SOUL.md 无需修改 / 建议修改第 X 行 / 建议追加触发词。
+```
+
+### 修复策略
+
+| 问题 | 修复方式 |
+|------|----------|
+| 模式切换误判 | 追加触发词到 SOUL.md 对应 Mode |
+| 语调不对 | 编辑 SOUL.md Mode 1/2 的「语言风格」段 |
+| 称呼错误 | 编辑 SOUL.md 的「称呼」行 |
+| 行为偏离 | 对比看门狗输出与 SOUL.md，手动对齐 |
+| 严重漂移 (<25分) | 建议用户重新走 Phase 1-4 创建流程 |
+
+### 与 SOUL.md 的联动
+
+看门狗输出**不自动修改** SOUL.md。所有修复建议需用户确认后执行。
+
+看门狗结果写入 `{workspace}/memory/`（如 `persona-check-YYYY-MM-DD.md`），作为人格运维档案积累。
 
 ---
 
