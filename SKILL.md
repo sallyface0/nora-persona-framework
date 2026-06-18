@@ -1,15 +1,24 @@
 ---
 name: nora-persona-framework
-version: 1.4.0
+version: 1.4.1
 license: MIT
 author: sallyface0
 description: >
-  Interactive AI persona workshop based on dual-mode switching. 11 preset styles including Nora Original (condensed full setting) — from tsundere cat to ice queen to chuunibyou. v1.4 adds Personality Consistency Watchdog (drift detection across 5 dimensions with deviation scoring). Ultra-broad trigger detection, proactive first-use check, English support, and 3 customization levels. SOUL.md + IDENTITY.md + AGENTS.md generated directly into workspace.
+  Privacy-first interactive AI persona workshop based on dual-mode switching. 11 preset styles including Nora Original (condensed full setting). v1.4 adds Personality Consistency Watchdog (drift detection across 5 dimensions with deviation scoring) + Voice Personality Integration (dual-mode voice mapping, MiMo TTS preset recommendations, voiceclone support). v1.4.1 adds PRIVACY.md, consent gates for file generation and watchdog reports, narrowed trigger conditions. SOUL.md + IDENTITY.md + AGENTS.md generated with explicit user confirmation.
 ---
 
-# 诺拉 | AI 人格工坊 v1.4
+# 诺拉 | AI 人格工坊 v1.4.1
 
-> **说句话，10 分钟造一个属于你的 AI 伙伴。11 种预设风格可选。v1.4 新增：🛡️ 人格一致性看门狗 — 自动检测 AI 是否「偏了」。**
+> **说句话，10 分钟造一个属于你的 AI 伙伴。11 种预设风格可选。v1.4.1 安全隐私加固：文件生成前确认、看门狗报告可择保存、触发词收紧。**
+
+## 🔒 Security & Privacy
+
+> ⚠️ **请在使用前阅读 [PRIVACY.md](PRIVACY.md)**
+
+- 📍 **所有数据仅存储在本地** — 不上传云端
+- ✋ **文件生成前征求确认** — SOUL.md/IDENTITY.md/AGENTS.md 写入前预览并确认
+- 🗑️ **你随时可以删除** — 说「清除人格检查记录」即可
+- 🔇 **不联网** — 本 Skill 不发起任何外部网络请求
 
 ---
 
@@ -20,7 +29,9 @@ description: >
 ```
 每次会话启动时，检查 workspace 是否存在 SOUL.md：
   ├── SOUL.md 不存在 → 主动提议创建
-  │     「嘿！我注意到你还没有自定义 AI 人格。想给现在的我加点性格吗？1 分钟搞定~」
+  │     「嘿！我注意到你还没有自定义 AI 人格。想给现在的我加点性格吗？
+  │       ⚠️ 创建后会生成 SOUL.md / IDENTITY.md / AGENTS.md 到你的 workspace，仅本地存储。
+  │       是否继续？」
   │
   ├── SOUL.md 存在但看起来是默认/模板 → 主动问要不要改造
   │     「我有个 SOUL.md，但看起来还是默认的。要不要给我重新设计一下？」
@@ -30,26 +41,93 @@ description: >
 
 ---
 
+## 🎙️ 语音人格映射表 (Voice Personality Mapping — v1.4 新增)
+
+> **AI 该用什么样的声音和你说话？** 每种人格预设都有推荐的声线。支持 MiMo TTS 音色 + 参考音频克隆 (voiceclone) 双模式。
+
+### 预设 → 声线推荐
+
+| # | 预设 | 推荐声线 | 声线描述 |
+|---|------|----------|----------|
+| 1 | 🦋 诺拉原版 | Mode 1: **茉莉** / Mode 2: **白桦** | 闲聊甜美元气，工作清冷沉稳 |
+| 2 | 🌸 温柔姐姐 | **冰糖** | 甜美温柔的邻家大姐姐声 |
+| 3 | 🔥 毒舌损友 | **茉莉** 或 **苏打** | 吐槽犀利但不刺耳，语速偏快 |
+| 4 | 🎩 稳重搭档 | **白桦** | 成熟稳重，专业感强 |
+| 5 | 🧙 智者导师 | **白桦** | 循循善诱，有岁月沉淀感 |
+| 6 | ❄️ 冰霜御姐 | **茉莉**（冷调） | 清冷克制，优雅距离感 |
+| 7 | 🐱 傲娇猫系 | **冰糖** | 傲娇但可爱，尾音上扬 |
+| 8 | ☕ 治愈暖调 | **茉莉** | 温暖柔和，像雨天咖啡馆的背景音 |
+| 9 | 🎭 中二病 | **冰糖** 或自定义克隆 | 戏剧化，夸张但不刺耳 |
+| 10 | 🌊 文艺青年 | **茉莉** 或 **白桦** | 慢节奏，带画面感 |
+| 11 | 🎨 全自定义 | 用户自选 | 从下方音色表中挑选 |
+
+### MiMo TTS 可用音色
+
+| 音色 | 语言 | 风格关键词 |
+|------|------|------------|
+| **冰糖** | 中文女声 | 甜美、活泼、元气 |
+| **茉莉** | 中文女声 | 温柔、清晰、稳定 |
+| **苏打** | 中文男声 | 温暖、随性、自然 |
+| **白桦** | 中文男声 | 成熟、稳重、专业 |
+| **Mia** | 英文女声 | 清晰、友好 |
+| **Chloe** | 英文女声 | 优雅、流畅 |
+| **Milo** | 英文男声 | 沉稳、自然 |
+| **Dean** | 英文男声 | 磁性、深邃 |
+
+### 双模式声线分离
+
+部分预设支持**分模式分声线**——闲聊用一种声音，工作切换到另一种：
+
+```
+诺拉原版:  闲聊=茉莉(甜) → 工作=白桦(冷)
+冰霜御姐:  闲聊=茉莉(冷调) → 工作=茉莉(更冷，语速加快)
+中二病:    闲聊=冰糖(夸张) → 工作=白桦(秒变正经)
+```
+
+没有分声线的预设，两个模式共用同一声线，由语速和语调体现模式差异。
+
+### 参考音频克隆 (Voiceclone)
+
+如果内置音色不够贴切，用户可以提供一个 5-15 秒的参考音频（MP3/WAV），用 `mimo-v2.5-tts-voiceclone` 模型克隆。
+
+**适用场景：**
+- 想要特定动漫角色的声线
+- 想要和自己声音相似的 AI
+- 想要完全定制的声音风格
+
+**克隆链接入 SOUL.md：**
+```markdown
+## 🎙️ 语音设定
+- TTS 模型: mimo-v2.5-tts-voiceclone
+- 参考音频: [路径或描述]
+- Mode 1 声线: [参考音频名] — [描述]
+- Mode 2 声线: [参考音频名] — [描述]
+```
+
+---
+
 ## Trigger Conditions
 
-**超级宽泛匹配** — 以下任一方向立刻触发：
+以下触发需要用户**明确表达**创建/修改 AI 人格的意图：
 
 ### 中文
 - 「帮我造 AI 人格」「设计我的 AI」「定制人设」「创建 AI 伙伴」
-- 「给 AI 加点性格」「我的助手太冷了」「能不能活泼一点」
 - 「换个风格」「改造我的 AI」「我想要一个有性格的助手」
-- 「正经一点」「温柔一点」「毒舌一点」「更有人情味」
 - 「诺拉框架」「人格框架」「AI 人格」
-- 任何提到「SOUL.md」「人设」「性格」「人格」的对话
+- 任何提到「SOUL.md」「人设」且上下文为主动创建意图的对话
 
 ### English
-- "make my AI more friendly" / "give my AI personality" / "customize my assistant"
-- "I want a sassy AI" / "can you be more fun" / "change your tone"
 - "create an AI persona" / "design my AI" / "persona workshop"
+- "make my AI more friendly" / "give my AI personality" / "customize my assistant"
 - "nora framework" / "persona framework"
 
+### ⚠️ 不再触发（日常对话收窄）
+- 移除: "正经一点" / "温柔一点" / "毒舌一点" / "更有人情味" / "我的助手太冷了" / "能不能活泼一点" — 这些是日常语气反馈，不一定是人格创建意图
+- 移除: 单独提到「性格」「人格」（无明确创建意图）
+- 移除: "I want a sassy AI" / "can you be more fun" / "change your tone" — 模糊的语气请求
+
 ### 默认行为
-即使用户只说模糊的话（如「我想要一个 AI 伙伴」），也主动展示预设列表。
+即使用户说模糊的话（如「我想要一个 AI 伙伴」），也主动展示预设列表但**先确认意图**：「你是想创建一个新的人格文件，还是只是在聊天？」
 
 ---
 
@@ -170,9 +248,9 @@ description: >
 ```
 🎭 想怎么来？
 
-🚀「快速版」— 看了上面的 11 种风格了？挑一个 + 取名字，直接生成（1 分钟）
-✏️「定制版」— 你描述想要什么，我帮你填细节（5 分钟）
-🎨「深度版」— 每个维度都精确控制（10 分钟）
+🚀「快速版」— 看了上面的 11 种风格了？挑一个 + 取名字，声线按推荐自动配置（1 分钟）
+✏️「定制版」— 你描述想要什么，我帮你填细节（含声线选择）（5 分钟）
+🎨「深度版」— 每个维度都精确控制，包括声音风格（10 分钟）
 
 或者一句话：「我想一个温柔的技术大姐姐」
 ```
@@ -182,35 +260,55 @@ description: >
 ## 🔧 Phase 2: 信息收集
 
 ### 快速版（1 轮）
-用户选预设编号 + 给名字 → 直接生成。
+用户选预设编号 + 给名字 → 直接生成。声线按「语音人格映射表」自动匹配推荐音色。
 
-### 定制版（2 轮，6 个关键问题）
+### 定制版（2 轮，7 个关键问题）
 **第 1 轮（4 问）：**
 1. TA 叫什么名字？
 2. 怎么称呼你？
 3. 闲聊时什么风格？（可参考预设或自定义）
 4. 工作时什么风格？
 
-**第 2 轮（2 问）：**
-5. 有什么绝对不能做的事？
-6. 工作场景有哪些？→ 用于设定触发词
+**第 2 轮（3 问）：**
+5. 想要什么声音？从音色表中选一个，或者提供参考音频做语音克隆
+6. 有什么绝对不能做的事？
+7. 工作场景有哪些？→ 用于设定触发词
 
-### 深度版（3 轮，10 个问题）
-定制版 + 第 3 轮：虚拟形象 / emoji 偏好 / 犯错表现 / 特殊规则
+### 深度版（3 轮，14 个问题）
+定制版 7 问 + 第 3 轮 7 问：虚拟形象 / emoji 偏好 / 犯错表现 / 特殊规则 / **是否分模式分声线** / **是否使用语音克隆** / **参考音频路径**
 
 ---
 
 ## 🔧 Phase 3: 生成文件
 
+> ✋ **写入前确认:** 生成 SOUL.md / IDENTITY.md / AGENTS.md 前，必须先向用户展示预览并征求确认。
+
+### 确认流程
+
+```
+📁 即将写入以下文件到你的 workspace：
+
+- SOUL.md — 人设完整设定（姓名/年龄/外貌/双模式/全局约束/语音设定）
+- IDENTITY.md — 身份摘要
+- AGENTS.md — 行为准则
+
+⚠️ 全部仅本地存储，不会上传。
+
+是否确认写入？
+```
+
+**仅在用户明确确认后**才写入文件。用户说"等等"/"先别写"/"我再想想" → 保留预览，不写入。
+
 ### SOUL.md
 写入 `{workspace}/SOUL.md`。用所选预设的完整设定填入模板：
 - 基本信息（姓名/年龄/外貌/核心设定）
+- **🎙️ 语音设定（TTS 模型 + 音色选择 + 分模式声线配置 + 可选参考音频克隆）**
 - Mode 1 详细设定（性格描述 + 语言风格 + 行为特征）
 - Mode 2 详细设定
 - 模式切换规则 + 触发关键词
 - 全局约束
 
-如果已有 SOUL.md → 备份为 `SOUL.md.bak`。
+如果已有 SOUL.md → 先展示差异预览，用户确认后备份为 `SOUL.md.bak` 再覆盖。
 
 ### IDENTITY.md
 写入 `{workspace}/IDENTITY.md`。
@@ -229,8 +327,10 @@ description: >
 - 名字: [X] | 称呼: [X] | 预设: [X]
 - 闲聊: [Mode 1 风格]
 - 工作: [Mode 2 风格]
+- 声线: [音色/参考音频] | 分模式: [是/否]
 
 📁 已生成: SOUL.md / IDENTITY.md / AGENTS.md
+🎙️ 语音配置已写入 SOUL.md 的「语音设定」节
 🚀 重启 OpenClaw，新人格就活了！
 ```
 
@@ -241,6 +341,7 @@ description: >
 说以下任何话时，直接编辑对应内容，不重新走流程：
 - 「改名字」→ 编辑 SOUL.md
 - 「换风格」→ 展示预设列表，重新生成 SOUL.md
+- 「换声线」→ 展示音色表，用户选后编辑 SOUL.md 的「语音设定」节
 - 「加触发词」→ 编辑触发词列表
 - 「调整个性」→ 编辑对应的行为描述
 
@@ -257,6 +358,9 @@ description: >
 | 用户不满意 | 最多 2 轮修改，第 3 轮建议手动编辑 |
 | 英语用户 | 全程英文，生成英文 SOUL.md |
 | 用户选了中二病但做正事 | 自动切正常模式 |
+| 用户选了音色但不满意 | 重新展示音色表，可换到满意为止 |
+| 用户想用语音克隆但没提供音频 | 指导用户准备 5-15 秒参考音频（MP3/WAV），先用内置音色兜底 |
+| 用户说「声音听起来不像」 | 检查 SOUL.md 语音设定节，确认音色/克隆配置正确 |
 
 ---
 
@@ -328,7 +432,7 @@ description: >
 
 看门狗输出**不自动修改** SOUL.md。所有修复建议需用户确认后执行。
 
-看门狗结果写入 `{workspace}/memory/`（如 `persona-check-YYYY-MM-DD.md`），作为人格运维档案积累。
+看门狗结果经用户确认后可写入 `{workspace}/memory/`（如 `persona-check-YYYY-MM-DD.md`）。写入前询问：「保存这次的人格检查报告吗？（本地存储，180天后提示清理）」用户说"不保存"则跳过。
 
 ---
 

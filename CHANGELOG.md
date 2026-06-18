@@ -1,6 +1,25 @@
 # CHANGELOG
 
+## v1.4.1 (2026-06-18)
+
+### 🔒 Security & Privacy Hardening
+- **New `PRIVACY.md`**: comprehensive data collection, retention, deletion controls, and privacy promises.
+- **Consent gate for file generation (Phase 3)**: SOUL.md/IDENTITY.md/AGENTS.md now require explicit user confirmation before writing. Shows preview first.
+- **Consent gate for watchdog reports**: persona-check reports now ask "保存这次报告吗？" before writing to memory/.
+- **Narrowed trigger conditions**: Removed overly broad triggers like "正经一点", "温柔一点", "毒舌一点", "更有人情味", "我的助手太冷了", "能不能活泼一点", "I want a sassy AI", "can you be more fun", "change your tone".
+- **Privacy notice on first-use**: initial prompt now includes a warning that files will be created locally.
+- **Updated SKILL.md frontmatter**: v1.4.1, privacy-first description.
+
 ## v1.4.0 (2026-05-21)
+
+### 🎙️ Voice Personality Integration (NEW)
+- **Voice mapping table**: 11 presets × 8 MiMo TTS voices, each with recommended voice character
+- **Dual-mode voice separation**: select different voices for casual vs work mode (e.g. sweet for chat, mature for work)
+- **Voiceclone support**: reference audio cloning via mimo-v2.5-tts-voiceclone for custom voice characters
+- **Voice selection in workflow**: Quick (auto-matched) / Custom (7th question) / Deep (full voice config incl. clone path)
+- **SOUL.md template**: new 🎙️ Voice Settings section with TTS model, voice character, dual-mode config, and voice clone fields
+- **IDENTITY.md template**: added voice character reference line
+- **Modification support**: "换声线" triggers voice change without full re-flow
 
 ### 🛡️ Personality Consistency Watchdog
 - **5-D drift detection**: mode switching accuracy / tone consistency / address compliance / global constraint adherence / behavior matching
@@ -11,8 +30,11 @@
 - **Persona archive**: check results stored in `memory/persona-check-YYYY-MM-DD.md` for long-term tracking
 
 ### 🔧 Minor Updates
-- Trigger conditions expanded to include consistency check keywords
-- SKILL.md restructured with new watchdog section
+- Trigger conditions expanded to include consistency check and voice change keywords
+- Phase workflow updated: Quick (auto voice match), Custom (7 questions with voice), Deep (14 questions with voice clone)
+- Phase 3 SOUL.md generation now includes voice settings section
+- Phase 4 confirmation shows voice configuration
+- SKILL.md restructured with new voice mapping and watchdog sections
 
 ## v1.3.0 (2026-05-18)
 
